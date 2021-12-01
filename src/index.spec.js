@@ -303,46 +303,46 @@ describe('Article 요구사항 테스트', () => {
 
         expect(article.getAllComments()).toEqual([comment, comment2]);
     });
-    //});
+});
 
-    // describe('Comment 요구사항 테스트', () => {
-    //     /**
-    //      * @type {Site}
-    //      */
-    //     let mySite;
+describe('Comment 요구사항 테스트', () => {
+    /**
+     * @type {Site}
+     */
+    let mySite;
 
-    //     beforeEach(() => {
-    //         // NOTE: Reset `mySite`
-    //         mySite = new Site();
-    //         const noticeBoard = new Board('공지사항');
-    //         mySite.addBoard(noticeBoard);
+    beforeEach(() => {
+        // NOTE: Reset `mySite`
+        mySite = new Site();
+        const noticeBoard = new Board('공지사항');
+        mySite.addBoard(noticeBoard);
 
-    //         const article = new Article({
-    //             subject: '첫번째 공지사항입니다.',
-    //             content: '테스트 코드는 수정하면 안됩니다.',
-    //             author: '강승현',
-    //         });
-    //         noticeBoard.publish(article);
-    //     });
+        const article = new Article({
+            subject: '첫번째 공지사항입니다.',
+            content: '테스트 코드는 수정하면 안됩니다.',
+            author: '강승현',
+        });
+        noticeBoard.publish(article);
+    });
 
-    //     test('Comment는 content, author 2개의 데이터를 포함해야 하며 null 또는 빈 문자열("")은 허용하지 않는다.', () => {
-    //         const noticeBoard = mySite.findBoardByName('공지사항');
-    //         const [article] = noticeBoard.getAllArticles();
+    test('Comment는 content, author 2개의 데이터를 포함해야 하며 null 또는 빈 문자열("")은 허용하지 않는다.', () => {
+        const noticeBoard = mySite.findBoardByName('공지사항');
+        const [article] = noticeBoard.getAllArticles();
 
-    //         expect(() => {
-    //             const comment = new Comment({
-    //                 content: '댓글1111',
-    //                 author: '강승현',
-    //             });
-    //             article.reply(comment);
-    //         }).not.toThrow();
+        expect(() => {
+            const comment = new Comment({
+                content: '댓글1111',
+                author: '강승현',
+            });
+            article.reply(comment);
+        }).not.toThrow();
 
-    //         expect(() => {
-    //             const comment = new Comment({
-    //                 content: null,
-    //                 author: '',
-    //             });
-    //             article.reply(comment);
-    //         }).toThrow();
-    //     });
+        expect(() => {
+            const comment = new Comment({
+                content: null,
+                author: '',
+            });
+            article.reply(comment);
+        }).toThrow();
+    });
 });

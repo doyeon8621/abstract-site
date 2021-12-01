@@ -88,7 +88,8 @@ class Article {
 
 class Comment {
     constructor(construction) {
-        this.construction = construction;
+        if (construction['content'] && construction['author']) this.construction = construction;
+        else throw new Error('content, author은 필수입니다.');
         this.createdDate = '';
     }
 }
