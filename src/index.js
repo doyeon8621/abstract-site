@@ -49,13 +49,14 @@ class Board {
     constructor(boardName) {
         this.isSiteIn = false;
         this.articles = [];
-        if (boardName === null || boardName === '') throw new Error('Board이름이 필요합니다.');
+        if (!boardName) throw new Error('Board이름이 필요합니다.');
         this.boardName = boardName;
     }
     publish(article) {
         if (this.isSiteIn) {
             article.id = `${this.boardName}-${Math.random()}`;
             article.createdDate = date_formmatter(new Date());
+            article.isBoardIn = true;
             this.articles.push(article);
         } else throw new Error('Site에 추가된 Board에만 Article을 추가할 수 있습니다.');
     }
@@ -65,14 +66,32 @@ class Board {
 }
 
 class Article {
-    constructor(articleConstruction) {
-        this.articleConstruction = articleConstruction;
+    constructor(construction) {
+        if (construction['subject'] && construction['content'] && construction['author'])
+            this.construction = construction;
+        else throw new Error('subject, content, author은 필수입니다.');
         this.id = 0;
         this.createdDate = '';
+        this.isBoardIn = false;
+        this.comments = [];
+    }
+    reply(comment) {
+        if (this.isBoardIn) {
+            comment.createdDate = date_formmatter(new Date());
+            this.comments.push(comment);
+        } else throw new Error('Board에 추가된 Article에만 Comment를 추가할 수 있습니다.');
+    }
+    getAllComments() {
+        return this.comments;
     }
 }
 
-class Comment {}
+class Comment {
+    constructor(construction) {
+        this.construction = construction;
+        this.createdDate = '';
+    }
+}
 
 module.exports = {
     Site,
