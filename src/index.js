@@ -9,7 +9,7 @@ class Site {
             boardNames.push(b.boardName);
         }
         if (!boardNames.includes(board.boardName)) {
-            board.isSiteIn = true;
+            board.isInSite = true;
             this.boards.push(board);
         } else {
             throw new Error('이미 추가된 Board입니다');
@@ -47,16 +47,16 @@ function date_formmatter(format) {
 
 class Board {
     constructor(boardName) {
-        this.isSiteIn = false;
+        this.isInSite = false;
         this.articles = [];
         if (!boardName) throw new Error('Board이름이 필요합니다.');
         this.boardName = boardName;
     }
     publish(article) {
-        if (this.isSiteIn) {
+        if (this.isInSite) {
             article.id = `${this.boardName}-${Math.random()}`;
             article.createdDate = date_formmatter(new Date());
-            article.isBoardIn = true;
+            article.isInBoard = true;
             this.articles.push(article);
         } else throw new Error('Site에 추가된 Board에만 Article을 추가할 수 있습니다.');
     }
@@ -72,11 +72,11 @@ class Article {
         else throw new Error('subject, content, author은 필수입니다.');
         this.id = 0;
         this.createdDate = '';
-        this.isBoardIn = false;
+        this.isInBoard = false;
         this.comments = [];
     }
     reply(comment) {
-        if (this.isBoardIn) {
+        if (this.isInBoard) {
             comment.createdDate = date_formmatter(new Date());
             this.comments.push(comment);
         } else throw new Error('Board에 추가된 Article에만 Comment를 추가할 수 있습니다.');
