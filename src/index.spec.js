@@ -123,84 +123,84 @@ describe('Board 요구사항 테스트', () => {
         expect(/\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}.\d{3}Z/.test(article.createdDate)).toBe(true);
     });
 
-    //     test('Article 은 n개 이상 추가 할 수 있다.', () => {
-    //         const noticeBoard = new Board('공지사항');
-    //         mySite.addBoard(noticeBoard);
+    test('Article 은 n개 이상 추가 할 수 있다.', () => {
+        const noticeBoard = new Board('공지사항');
+        mySite.addBoard(noticeBoard);
 
-    //         const article = new Article({
-    //             subject: '첫번째 공지사항입니다.',
-    //             content: '테스트 코드는 수정하면 안됩니다.',
-    //             author: '강승현',
-    //         });
-    //         const article2 = new Article({
-    //             subject: '두번째 공지사항입니다.',
-    //             content: 'DB나 웹서버를 이용할 필요는 없습니다.',
-    //             author: '강승현',
-    //         });
+        const article = new Article({
+            subject: '첫번째 공지사항입니다.',
+            content: '테스트 코드는 수정하면 안됩니다.',
+            author: '강승현',
+        });
+        const article2 = new Article({
+            subject: '두번째 공지사항입니다.',
+            content: 'DB나 웹서버를 이용할 필요는 없습니다.',
+            author: '강승현',
+        });
 
-    //         noticeBoard.publish(article);
+        noticeBoard.publish(article);
 
-    //         expect(() => {
-    //             noticeBoard.publish(article2);
-    //         }).not.toThrow();
-    //     });
+        expect(() => {
+            noticeBoard.publish(article2);
+        }).not.toThrow();
+    });
 
-    //     test('작성된 Article 목록을 조회 할 수 있어야 한다.', () => {
-    //         const noticeBoard = new Board('공지사항');
-    //         mySite.addBoard(noticeBoard);
+    test('작성된 Article 목록을 조회 할 수 있어야 한다.', () => {
+        const noticeBoard = new Board('공지사항');
+        mySite.addBoard(noticeBoard);
 
-    //         const article = new Article({
-    //             subject: '첫번째 공지사항입니다.',
-    //             content: '테스트 코드는 수정하면 안됩니다.',
-    //             author: '강승현',
-    //         });
-    //         noticeBoard.publish(article);
+        const article = new Article({
+            subject: '첫번째 공지사항입니다.',
+            content: '테스트 코드는 수정하면 안됩니다.',
+            author: '강승현',
+        });
+        noticeBoard.publish(article);
 
-    //         const article2 = new Article({
-    //             subject: '두번째 공지사항입니다.',
-    //             content: 'DB나 웹서버를 이용할 필요는 없습니다.',
-    //             author: '강승현',
-    //         });
-    //         noticeBoard.publish(article2);
+        const article2 = new Article({
+            subject: '두번째 공지사항입니다.',
+            content: 'DB나 웹서버를 이용할 필요는 없습니다.',
+            author: '강승현',
+        });
+        noticeBoard.publish(article2);
 
-    //         expect(noticeBoard.getAllArticles()).toEqual([article, article2]);
-    //     });
-    // });
+        expect(noticeBoard.getAllArticles()).toEqual([article, article2]);
+    });
+});
 
-    // describe('Article 요구사항 테스트', () => {
-    //     /**
-    //      * @type {Site}
-    //      */
-    //     let mySite;
+describe('Article 요구사항 테스트', () => {
+    /**
+     * @type {Site}
+     */
+    let mySite;
 
-    //     beforeEach(() => {
-    //         // NOTE: Reset `mySite`
-    //         mySite = new Site();
-    //         const noticeBoard = new Board('공지사항');
-    //         mySite.addBoard(noticeBoard);
-    //     });
+    beforeEach(() => {
+        // NOTE: Reset `mySite`
+        mySite = new Site();
+        const noticeBoard = new Board('공지사항');
+        mySite.addBoard(noticeBoard);
+    });
 
-    //     test('Article은 subject, content, author 3개의 데이터를 포함해야 하며 null 또는 빈 문자열("")은 허용하지 않는다.', () => {
-    //         const noticeBoard = mySite.findBoardByName('공지사항');
+    test('Article은 subject, content, author 3개의 데이터를 포함해야 하며 null 또는 빈 문자열("")은 허용하지 않는다.', () => {
+        const noticeBoard = mySite.findBoardByName('공지사항');
 
-    //         expect(() => {
-    //             const article = new Article({
-    //                 subject: '첫번째 공지사항입니다.',
-    //                 content: '테스트 코드는 수정하면 안됩니다.',
-    //                 author: '강승현',
-    //             });
-    //             noticeBoard.publish(article);
-    //         }).not.toThrow();
+        expect(() => {
+            const article = new Article({
+                subject: '첫번째 공지사항입니다.',
+                content: '테스트 코드는 수정하면 안됩니다.',
+                author: '강승현',
+            });
+            noticeBoard.publish(article);
+        }).not.toThrow();
 
-    //         expect(() => {
-    //             const article2 = new Article({
-    //                 subject: null,
-    //                 content: null,
-    //                 author: '',
-    //             });
-    //             noticeBoard.publish(article2);
-    //         }).toThrow();
-    //     });
+        expect(() => {
+            const article2 = new Article({
+                subject: null,
+                content: null,
+                author: '',
+            });
+            noticeBoard.publish(article2);
+        }).toThrow();
+    });
 
     //     test('Board에 추가된 Article만 사용 가능한 것으로 간주하며 사용 불가능한 Article에는 Comment를 추가할 수 없다.', () => {
     //         const noticeBoard = mySite.findBoardByName('공지사항');
