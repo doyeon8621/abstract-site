@@ -68,60 +68,60 @@ describe('Board 요구사항 테스트', () => {
         }).toThrow();
     });
 
-    //     test('Site 에 추가된 Board만 사용 가능한 것으로 간주하며 사용 불가능한 Board에는 Article을 추가할 수 없다.', () => {
-    //         const addedBoard = new Board('사이트에 추가된 게시판');
-    //         const notAddedBoard = new Board('사이트에 추가되지 않은 게시판');
+    test('Site 에 추가된 Board만 사용 가능한 것으로 간주하며 사용 불가능한 Board에는 Article을 추가할 수 없다.', () => {
+        const addedBoard = new Board('사이트에 추가된 게시판');
+        const notAddedBoard = new Board('사이트에 추가되지 않은 게시판');
 
-    //         mySite.addBoard(addedBoard);
+        mySite.addBoard(addedBoard);
 
-    //         expect(() => {
-    //             const article = new Article({
-    //                 subject: '글 제목',
-    //                 content: '내용',
-    //                 author: '작성자',
-    //             });
-    //             addedBoard.publish(article);
-    //         }).not.toThrow();
+        expect(() => {
+            const article = new Article({
+                subject: '글 제목',
+                content: '내용',
+                author: '작성자',
+            });
+            addedBoard.publish(article);
+        }).not.toThrow();
 
-    //         expect(() => {
-    //             const article = new Article({
-    //                 subject: '글 제목2',
-    //                 content: '내용',
-    //                 author: '작성자',
-    //             });
-    //             notAddedBoard.publish(article);
-    //         }).toThrow();
-    //     });
+        expect(() => {
+            const article = new Article({
+                subject: '글 제목2',
+                content: '내용',
+                author: '작성자',
+            });
+            notAddedBoard.publish(article);
+        }).toThrow();
+    });
 
-    //     test('Board에 Article을 추가할 때 Article에 ID를 자동 생성해서 부여해야 한다.', () => {
-    //         const noticeBoard = new Board('공지사항');
-    //         mySite.addBoard(noticeBoard);
+    test('Board에 Article을 추가할 때 Article에 ID를 자동 생성해서 부여해야 한다.', () => {
+        const noticeBoard = new Board('공지사항');
+        mySite.addBoard(noticeBoard);
 
-    //         const article = new Article({
-    //             subject: '첫번째 공지사항입니다.',
-    //             content: '테스트 코드는 수정하면 안됩니다.',
-    //             author: '강승현',
-    //         });
-    //         noticeBoard.publish(article);
+        const article = new Article({
+            subject: '첫번째 공지사항입니다.',
+            content: '테스트 코드는 수정하면 안됩니다.',
+            author: '강승현',
+        });
+        noticeBoard.publish(article);
 
-    //         // 규칙은 ${board.name}-${랜덤 값} 를 따른다.
-    //         expect(article.id.startsWith('공지사항-')).toBe(true);
-    //     });
+        // 규칙은 ${board.name}-${랜덤 값} 를 따른다.
+        expect(article.id.startsWith('공지사항-')).toBe(true);
+    });
 
-    //     test('Board에 Article을 추가할 때 Article에 작성 일자가 들어가야 한다.', () => {
-    //         const noticeBoard = new Board('공지사항');
-    //         mySite.addBoard(noticeBoard);
+    test('Board에 Article을 추가할 때 Article에 작성 일자가 들어가야 한다.', () => {
+        const noticeBoard = new Board('공지사항');
+        mySite.addBoard(noticeBoard);
 
-    //         const article = new Article({
-    //             subject: '첫번째 공지사항입니다.',
-    //             content: '테스트 코드는 수정하면 안됩니다.',
-    //             author: '강승현',
-    //         });
-    //         noticeBoard.publish(article);
+        const article = new Article({
+            subject: '첫번째 공지사항입니다.',
+            content: '테스트 코드는 수정하면 안됩니다.',
+            author: '강승현',
+        });
+        noticeBoard.publish(article);
 
-    //         // createdDate가 저장되는 형식은 ISO 8601을 따른다.
-    //         expect(/\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}.\d{3}Z/.test(article.createdDate)).toBe(true);
-    //     });
+        // createdDate가 저장되는 형식은 ISO 8601을 따른다.
+        expect(/\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}.\d{3}Z/.test(article.createdDate)).toBe(true);
+    });
 
     //     test('Article 은 n개 이상 추가 할 수 있다.', () => {
     //         const noticeBoard = new Board('공지사항');
